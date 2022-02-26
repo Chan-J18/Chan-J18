@@ -1,4 +1,7 @@
-### Hi there 👋
+#### 👋 Hi,I'm Chanj.
+#### 👦 I'm a boy who like playing badminton 🏸.
+#### 🏫 I'm studying in college now.
+#### 📖 I'm currently learning how to use github.
 
 <!--
 **Chan-J18/Chan-J18** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
