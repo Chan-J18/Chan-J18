@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_spinner">
+        <item>自由职业者</item>
+        <item>客户</item>
+    </string-array>
+    <string-array name="freework_spinner">
+        <item>工作类</item>
+        <item>生活类</item>
+        <item>学习类</item>
+        <item>其他类</item>
+    </string-array>
+    <string-array name="user_spinner">
+        <item>工作服务</item>
+        <item>生活服务</item>
+        <item>学习服务</item>
+        <item>娱乐服务</item>
+        <item>其他服务</item>
+    </string-array>
+</resources>

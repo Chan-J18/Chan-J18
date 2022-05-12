@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ic_login3"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rent.user.UserActivity">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="user.interfaces.UserActivity">
+    <FrameLayout
+        android:id="@+id/user_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="550dp">
+    </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button android:id="@+id/user_btn1" style="@style/user_btn_layout" />
+        <Button android:id="@+id/user_btn2" style="@style/user_btn_layout"/>
+    </LinearLayout>
+</LinearLayout>

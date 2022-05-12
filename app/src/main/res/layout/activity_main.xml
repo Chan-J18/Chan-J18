@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/ic_login2"
+    android:background="@drawable/ic_login3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </TextView>
-        <EditText style="@style/liner_edt">
+        <EditText  android:id="@+id/main_edt_id" style="@style/liner_edt">
         </EditText>
      </LinearLayout>
 
@@ -38,13 +38,21 @@
             android:layout_height="wrap_content">
         </TextView>
         <EditText
+            android:id="@+id/main_edt_pw"
             style="@style/liner_edt">
         </EditText>
     </LinearLayout>
 
+    <Spinner
+        android:id="@+id/main_spinner"
+        android:layout_marginTop="30dp"
+        android:entries="@array/main_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Spinner>
 
     <LinearLayout
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         style="@style/liner_horizontal">
         <Button
             android:id="@+id/main_btn_login"

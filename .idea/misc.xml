@@ -4,11 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/rent-manager/src/main/res/layout/activity_manager.xml" value="0.21784420289855072" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.222" />
         <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2145" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_free_worker.xml" value="0.23072916666666668" />
         <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_main.xml" value="0.4244791666666667" />
         <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_main2.xml" value="0.21784420289855072" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_user.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_user2.xml" value="0.23072916666666668" />
         <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_user3.xml" value="0.22291666666666668" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/activity_user4.xml" value="0.23072916666666668" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/fragment_layout.xml" value="0.2265625" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/fragment_project.xml" value="0.23072916666666668" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/fragment_request.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/include_user_layout.xml" value="0.23072916666666668" />
         <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/layout.xml" value="0.40989583333333335" />
+        <entry key="..\:/AndroidStudioProjects/ServiceSystem/app/src/main/res/layout/recycler_item.xml" value="0.21510416666666668" />
+        <entry key="..\:/Program Files/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.23072916666666668" />
       </map>
     </option>
   </component>
