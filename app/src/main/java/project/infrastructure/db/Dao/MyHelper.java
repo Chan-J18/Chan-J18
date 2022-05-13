@@ -12,7 +12,8 @@ public class MyHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE project_info (pid vachar(20) primary key,pname varchar(2),pstate varchar(20),content varchar(100))");
+        sqLiteDatabase.execSQL("CREATE TABLE project_info (pid vachar(20) primary key,pname varchar(2),pstate varchar(20),pintroduce varchar(50)," +
+                "pcontent varchar(100))");
     }
 
     @Override

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceSystem">
         <activity
+            android:name="project.interfaces.ProjectActivity"
+            android:exported="false" />
+        <activity
             android:name="user.interfaces.FreeWorkerActivity"
             android:exported="false" />
         <activity

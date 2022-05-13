@@ -39,6 +39,7 @@ public class FragmentProject extends Fragment {
         List<ListBean> list = new ProjectService(getContext()).get(id);
         MyAdapter myAdapter = new MyAdapter();
         myAdapter.setListMsg(list);
+        myAdapter.setId(id);
         recyclerView.setAdapter(myAdapter);
         return v;
     }

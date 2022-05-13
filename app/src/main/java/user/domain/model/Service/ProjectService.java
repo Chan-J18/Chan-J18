@@ -32,10 +32,12 @@ public class ProjectService {
             {
                 while (cursor.moveToNext())
                 {
+                    String pid = cursor.getString(0);
                     String pname = cursor.getString(1);
                     String pstate = cursor.getString(2);
-                    String content =cursor.getString(3);
-                    list.add(ToBean.toPmsg(pname,pstate,content));
+                    String pintroduce =cursor.getString(3);
+                    String pcontent =cursor.getString(4);
+                    list.add(ToBean.toPmsg(pid,pname,pstate,pintroduce,pcontent));
                 }
             }
         }
