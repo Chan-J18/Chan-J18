@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceSystem">
         <activity
+            android:name="contract.interfaces.ContractActivity"
+            android:exported="false" />
+        <activity
+            android:name="request.interfaces.RequestActivity"
+            android:exported="false" />
+        <activity
+            android:name="request.interfaces.CreateReqActivity"
+            android:exported="false" />
+        <activity
+            android:name="project.interfaces.CreateProActivity"
+            android:exported="false" />
+        <activity
             android:name="project.interfaces.ProjectActivity"
             android:exported="false" />
         <activity

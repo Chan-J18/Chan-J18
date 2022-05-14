@@ -12,6 +12,7 @@ import com.example.servicesystem.R;
 
 import user.application.FragmentList;
 import user.application.FragmentProject;
+import user.application.FragmentRequest;
 
 public class UserActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,19 +21,21 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentTransaction fragmentTransaction;
     private Fragment fragment=null;
     private FragmentList fragmentList =null;
-    private  FragmentProject fragmentProject=null;
-    private String id;
+    private FragmentRequest fragmentRequest=null;
+    private String id,state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         id = getIntent().getStringExtra("id");
+        state = getIntent().getStringExtra("state");
+
         switchFragment(1);
 
         btn1 = findViewById(R.id.user_btn1);
         btn2 = findViewById(R.id.user_btn2);
         btn1.setText("服务列表");
-        btn2.setText("项目管理");
+        btn2.setText("请求管理");
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
     }
@@ -58,13 +61,14 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             case 1:
                 fragmentList = new FragmentList();
                 fragment = fragmentList;
-                fragmentList.setType(0);
+                fragmentList.setType("客户");
                 break;
             case 2:
-                fragmentProject = new FragmentProject();
-                fragment = fragmentProject;
+                fragmentRequest = new FragmentRequest();
+                fragment = fragmentRequest;
                 Bundle bundle = new Bundle();
                 bundle.putString("id",id);
+                bundle.putString("state",state);
                 fragment.setArguments(bundle);
                 break;
         }

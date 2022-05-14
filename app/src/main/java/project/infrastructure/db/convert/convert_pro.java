@@ -11,33 +11,27 @@ import project.infrastructure.db.Dao.DaoTimetable;
 import user.domain.model.entity.ListBean;
 
 public class  convert_pro{
-    public static List<project> getPmsg(Serializable pmsg)
+    public static project getPmsg(Serializable pmsg)
     {
-        List<ListBean> bean = (List<ListBean>)pmsg;
-        List<project> pro = new ArrayList<>();
-        for(int i=0;i<bean.size();i++)
-        {
-            project p = new project();
-            ListBean lb = bean.get(i);
-            p.setPid(lb.getPro_id());
-            p.setPstate(lb.getPro_state());
-            p.setPintroduce(lb.getPro_introduce());
-            p.setPname(lb.getPro_name());
-            p.setPcontent(lb.getPro_content());
-            pro.add(p);
-        }
+        ListBean bean = (ListBean)pmsg;
+        project pro  = new project();
+        pro.setPid(bean.getPro_id());
+        pro.setPstate(bean.getPro_state());
+        pro.setPintroduce(bean.getPro_introduce());
+        pro.setPname(bean.getPro_name());
+        pro.setPcontent(bean.getPro_content());
+        pro.setPtype(bean.getPro_type());
         return  pro;
     }
 
-    public static List<project> getPro(List<project> list,Serializable umsg,Context context)
+    public static project getPro(project pro,Serializable umsg,Context context)
     {
         String id = (String)umsg;
         DaoTimetable timetable = new DaoTimetable(context);
-        List<String> times = timetable.getTimeTable(getProId(list));
-        for(int i=0;i<list.size();i++)
-            list.get(i).setWorktime(times.get(i));
+        String times = timetable.getTimeTable(pro.getPid());
         //得到对用合同的时间表 project 有time table 对象  ,contract 是vo time table
-        return list;
+        pro.setWorktime(times);
+        return pro;
     }
 
     public static List<String> getProId(List<project> list)

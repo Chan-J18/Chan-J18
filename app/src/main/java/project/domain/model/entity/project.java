@@ -3,6 +3,7 @@ package project.domain.model.entity;
 public class project {
     private String pid;
     private String pname;
+    private String ptype;
     private String pintroduce;
     private String pcontent;
     private String pstate;
@@ -12,13 +13,13 @@ public class project {
         this.pcontent = pcontent;
     }
 
+    public void setPtype(String ptype) { this.ptype = ptype; }
+
     public void setPintroduce(String pintroduce) {
         this.pintroduce = pintroduce;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
+    public void setPid(String pid) { this.pid = pid; }
 
     public void setPname(String pname) {
         this.pname = pname;
@@ -35,6 +36,8 @@ public class project {
     public String getPcontent() {
         return pcontent;
     }
+
+    public String getPtype() { return ptype; }
 
     public String getPid() {
         return pid;

@@ -9,9 +9,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.servicesystem.R;
+import com.example.servicesystem.infrastructure.Dao.Dao;
 
+import user.infrastructure.db.Dao.DaoUser;
 import user.interfaces.FreeWorkerActivity;
 import user.interfaces.UserActivity;
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLogin = findViewById(R.id.main_btn_login);
         btnRegister = findViewById(R.id.main_btn_register);
         btnLogin.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
         spinner.setOnItemSelectedListener(this);
     }
 
@@ -45,20 +49,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.main_btn_login:
                 //验证 错误error() return
-                Intent intent=null;
-                switch (type)
+                if(id.equals("")||pw.equals(""))
                 {
-                    case 0:
-                        intent = new Intent(MainActivity.this, FreeWorkerActivity.class);
-                        break;
-                    case 1:
-                        intent = new Intent(MainActivity.this, UserActivity.class);
-                        break;
+                    Toast.makeText(getApplicationContext(),"账号密码不能为空",Toast.LENGTH_SHORT).show();
+                }else if(false==new Dao(getApplicationContext()).isUser(id,pw)){
+                    Toast.makeText(getApplicationContext(),"账号或密码错误",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent=null;
+                    switch (type)
+                    {
+                        case 0:
+                            intent = new Intent(MainActivity.this, FreeWorkerActivity.class);
+                            intent.putExtra("state","自由职业者");
+                            break;
+                        case 1:
+                            intent = new Intent(MainActivity.this, UserActivity.class);
+                            intent.putExtra("state","客户");
+                            break;
+                    }
+                    intent.putExtra("id",id);
+                    startActivity(intent);
                 }
-                intent.putExtra("id",id);
-                startActivity(intent);
                 break;
             case R.id.main_btn_register:
+                if(id.equals("")||pw.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"信息不能为空!",Toast.LENGTH_SHORT).show();
+                }else{
+                    DaoUser daoUser = new DaoUser(getApplicationContext());
+                    String state = null;
+                    switch (type)
+                    {
+                        case 1:
+                            state ="客户";
+                            break;
+                        case 0:
+                            state = "自由职业者";
+                            break;
+                    }
+                    daoUser.insertUserInfo(id,pw,state);
+                    Toast.makeText(getApplicationContext(),"注册成功！",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

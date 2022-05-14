@@ -2,26 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    tools:context="project.interfaces.ProjectActivity"
-    android:orientation="vertical">
+    tools:context="project.interfaces.CreateProActivity">
 
     <LinearLayout
         style="@style/pro_detail_horizontal">
         <TextView
+            android:id="@+id/pro_new_tvname"
+            android:text="项目名:"
             android:gravity="center"
-            android:id="@+id/pro_detail_tvid"
             android:layout_width="100dp"
             android:layout_height="50dp">
         </TextView>
         <EditText
-            android:id="@+id/pro_detail_edtname"
+            android:hint="篮球教学"
+            android:id="@+id/pro_new_edtname"
             android:layout_width="match_parent"
             android:layout_height="50dp">
         </EditText>
     </LinearLayout>
+
     <LinearLayout
         style="@style/pro_detail_horizontal"
         android:layout_width="match_parent"
@@ -32,17 +35,17 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"/>
         <Spinner
-            android:id="@+id/pro_detail_spinner"
+            android:id="@+id/pro_new_spinner"
             android:entries="@array/array_spinner"
             android:layout_width="300dp"
             android:layout_height="match_parent"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <EditText
-            android:id="@+id/pro_detail_edtintroduce"
+            android:hint="项目简介"
+            android:id="@+id/pro_new_edtintroduce"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
@@ -53,7 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp">
         <EditText
-            android:id="@+id/pro_detail_edtcontent"
+            android:hint="项目内容"
+            android:id="@+id/pro_new_edtcontent"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
@@ -69,27 +73,17 @@
             android:layout_height="50dp"
             />
         <EditText
-            android:id="@+id/pro_detail_edttimetable"
+            android:hint="14:00-16:00pm"
+            android:id="@+id/pro_new_edttimetable"
             android:singleLine="true"
             android:layout_width="300dp"
             android:layout_height="50dp"/>
 
     </LinearLayout>
-
-
-    <LinearLayout
-        style="@style/pro_detail_horizontal">
-        <Button
-            android:id="@+id/pro_detail_btnChange"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-        </Button>
-        <Button
-            android:id="@+id/pro_detail_btnDelete"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-        </Button>
-    </LinearLayout>
+    <Button
+        android:text="发布"
+        android:id="@+id/pro_new_btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </Button>
 </LinearLayout>

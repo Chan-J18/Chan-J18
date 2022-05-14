@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.servicesystem.R;
 
 import user.application.FragmentList;
+import user.application.FragmentProject;
 import user.application.FragmentRequest;
 
 public class FreeWorkerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -21,17 +22,22 @@ public class FreeWorkerActivity extends AppCompatActivity implements View.OnClic
     private FragmentTransaction fragmentTransaction;
     private Fragment fragment=null;
     private FragmentList fragmentList = null;
-    private FragmentRequest fragmentRequest = null;
+    private FragmentProject fragmentProject = null;
+    String id ,state;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_worker);
+        id = getIntent().getStringExtra("id");
+        state = getIntent().getStringExtra("state");
+
         switchFragment(1);
 
         btn1 = findViewById(R.id.user_btn1);
         btn2 = findViewById(R.id.user_btn2);
         btn1.setText("请求列表");
-        btn2.setText("请求管理");
+        btn2.setText("项目管理");
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
     }
@@ -57,11 +63,15 @@ public class FreeWorkerActivity extends AppCompatActivity implements View.OnClic
             case 1:
                 fragmentList = new FragmentList();
                 fragment = fragmentList;
-                fragmentList.setType(1);
+                fragmentList.setType("自由职业者");
                 break;
             case 2:
-                fragmentRequest = new FragmentRequest();
-                fragment = fragmentRequest;
+                fragmentProject = new FragmentProject();
+                fragment = fragmentProject;
+                Bundle bundle = new Bundle();
+                bundle.putString("id",id);
+                bundle.putString("state",state);
+                fragment.setArguments(bundle);
                 break;
         }
         fragmentTransaction.replace(R.id.user_fragment,fragment);

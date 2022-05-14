@@ -1,58 +1,75 @@
 package project.infrastructure.db.Dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.servicesystem.infrastructure.Dao.MyHelper;
 
-import user.domain.model.entity.ListBean;
 
 public class DaoTimetable {
-    private TimeHelper helper;
+    private MyHelper helper;
     private SQLiteDatabase db;
     public DaoTimetable(Context context)
     {
-        helper = new TimeHelper(context);
+        helper = MyHelper.getInstance(context.getApplicationContext());
     }
 
-    public List<String> getTimeTable(List<String> l)
+    public void CreatetableTime()
     {
-        List<String> list = new ArrayList<>();
+        helper.getWritableDatabase().execSQL("CREATE TABLE if not exists timetable (tid vachar(20) primary key,time varchar(20),pid varchar(20),foreign key(pid) references  project_info(pid))");
+    }
+    public String getTimeTable(String pid)
+    {
+        CreatetableTime();
         db = helper.getReadableDatabase();
-        String columns[] = {"tid"};
-        Cursor cursor;
-        for(int i=0;i<l.size();i++)
-        {
-            cursor = db.query("timetable",columns,"pid="+l.get(i),null,null,null,null);
-            if(cursor.getCount()!=0)
-                while (cursor.moveToNext())
-                    list.add(cursor.getString(1));
-        }
-        db.close();
-        return list;
+        String args[] = {pid};
+        String columns[] = {"time"};
+        Cursor cursor = db.query("timetable",columns,"pid=?",args,null,null,null);
+
+        String ans = null;
+        if(cursor.getCount()!=0)
+            while (cursor.moveToNext())
+                ans = cursor.getString(0);
+        cursor.close();
+        return ans;
     }
 
+    public void updateTime(String pid, String time)
+    {
+        CreatetableTime();
+        db = helper.getWritableDatabase();
+        String args[] = {pid};
+        ContentValues values = new ContentValues();
+        values.put("time",time);
+        db.update("timetable",values,"pid=?",args);
+    }
 
-    class TimeHelper extends SQLiteOpenHelper{
+    public void insertTime(String pid,String time)
+    {
+        CreatetableTime();
+        db =helper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        String tid = null;
+        do {
+            tid = String.valueOf((int)(Math.random()*1000000));
+        }while (TidisExist(tid));
+        cv.put("tid",tid);
+        cv.put("pid",pid);
+        cv.put("time",time);
+        db.insert("timetable","tid",cv);
+    }
 
-        private Context context;
-        public TimeHelper(Context context)
-        {
-            super(context,"SystemDB",null,1);
-        }
-        @Override
-        public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            sqLiteDatabase.execSQL("CREATE TABLE timetable (tid vachar(20) primary key,time varchar(20),pid varchar(20)," +
-                    "foreign key(pid) references  project_info(pid))");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-        }
+    private boolean TidisExist(String tid) {
+        CreatetableTime();
+        boolean ans =false;
+        db =helper.getReadableDatabase();
+        String args[] = {tid};
+        Cursor cursor =db.query("timetable",null,"tid=?",args,null,null,null);
+        if(cursor.getCount()!=0) ans = true;
+        cursor.close();
+        return ans;
     }
 
 }

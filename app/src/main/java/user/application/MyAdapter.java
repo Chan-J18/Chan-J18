@@ -1,9 +1,9 @@
 package user.application;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +18,27 @@ import com.example.servicesystem.R;
 import java.io.Serializable;
 import java.util.List;
 
+import contract.interfaces.ContractActivity;
 import project.interfaces.ProjectActivity;
+import request.domain.entity.request;
+import request.interfaces.RequestActivity;
+import user.domain.model.Service.RequestService;
 import user.domain.model.entity.ListBean;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private List<ListBean> listMsg;
+    private List<ListBean> proMsg;
+    private List<request> reqMsg;
     private Context context;
-    private String id;
+    private String id,state;
 
-    public void setId(String uid)
+    public void setMsg(String uid,String ustate)
     {
-        id = uid;
+        id = uid;state=ustate;
+    }
+    public void setState(String state)
+    {
+        this.state = state;
     }
 
     public void setContext(Context cont)
@@ -37,7 +46,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         context = cont;
     }
 
-    public void setListMsg(List<ListBean> l){listMsg = l;}
+    public void setProMsg(List<ListBean> l){
+        proMsg = l;}
+
+    public void setReqMsg(List<request> l){
+        reqMsg = l;}
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,16 +58,49 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return  holder;
     }
 
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        if(listMsg!=null) {
-            holder.name.setText(listMsg.get(position).getPro_name());
-            holder.introduce.setText(listMsg.get(position).getPro_introduce());
+
+
+
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        if(proMsg !=null) {
+            holder.name.setText(proMsg.get(position).getPro_name());
+            holder.introduce.setText(proMsg.get(position).getPro_introduce());
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, ProjectActivity.class);
+                    Intent intent =null;
                     Bundle bundle =new Bundle();
-                    bundle.putSerializable("Pmsg",(Serializable) listMsg);
+                    if(state.equals("Proslist"))
+                    {
+                        //未修改，跳转到 contract 界面
+                        intent = new Intent(context, ContractActivity.class);
+                        bundle.putSerializable("Pmsg",(Serializable) proMsg.get(position));
+                    }else if(state.equals("自由职业者")) {
+                        intent = new Intent(context, ProjectActivity.class);
+                        bundle.putSerializable("Pmsg",(Serializable) proMsg.get(position));
+                    }
+                    bundle.putSerializable("Umsg",(Serializable) id);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
+        }else if(reqMsg!=null)
+        {
+            holder.name.setText(reqMsg.get(position).getRname());
+            holder.introduce.setText(reqMsg.get(position).getRintroduce());
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =null;
+                    Bundle bundle =new Bundle();
+                    if(state.equals("Reqslist"))
+                    {
+                        intent = new Intent(context, ContractActivity.class);
+                        bundle.putSerializable("Rmsg",(Serializable) proMsg.get(position));
+                    }else if(state.equals("客户")) {
+                        intent = new Intent(context, RequestActivity.class);
+                        bundle.putSerializable("Rmsg",(Serializable)reqMsg.get(position));
+                    }
                     bundle.putSerializable("Umsg",(Serializable) id);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
@@ -65,7 +111,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listMsg.size();
+        int num = 0;
+        if(state.equals("Proslist")||state.equals("自由职业者")) {
+            num = proMsg.size();
+        }else if(state.equals("Reqslist")||state.equals("客户")){
+            num = reqMsg.size();
+        }
+
+        return  num;
     }
 
 
