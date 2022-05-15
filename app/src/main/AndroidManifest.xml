@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceSystem">
         <activity
+            android:name="manager.interfaces.ManagerActivity"
+            android:exported="false" />
+        <activity
             android:name="contract.interfaces.ContractActivity"
             android:exported="false" />
         <activity

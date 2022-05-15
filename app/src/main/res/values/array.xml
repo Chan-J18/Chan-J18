@@ -3,6 +3,7 @@
     <string-array name="main_spinner">
         <item>自由职业者</item>
         <item>客户</item>
+        <item>管理员</item>
     </string-array>
     <string-array name="array_spinner">
         <item>全部</item>

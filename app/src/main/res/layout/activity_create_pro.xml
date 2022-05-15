@@ -65,6 +65,7 @@
 
     <View style="@style/horizontal_line" />
     <LinearLayout
+        android:id="@+id/ll_time"
         style="@style/pro_detail_horizontal">
         <TextView
             android:text="时间表:"

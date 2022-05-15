@@ -58,22 +58,21 @@ public class FreeWorkerActivity extends AppCompatActivity implements View.OnClic
     private void switchFragment(int choose) {
         fragmentManager =getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("id",id);
+        bundle.putString("state",state);
         switch (choose)
         {
             case 1:
                 fragmentList = new FragmentList();
                 fragment = fragmentList;
-                fragmentList.setType("自由职业者");
                 break;
             case 2:
                 fragmentProject = new FragmentProject();
                 fragment = fragmentProject;
-                Bundle bundle = new Bundle();
-                bundle.putString("id",id);
-                bundle.putString("state",state);
-                fragment.setArguments(bundle);
                 break;
         }
+        fragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.user_fragment,fragment);
         fragmentTransaction.commit();
 

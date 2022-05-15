@@ -68,6 +68,7 @@ public class CreateProActivity extends AppCompatActivity implements View.OnClick
     {
         DaoProject daoProject = new DaoProject(getApplicationContext());
         daoProject.insertProject(pro,id);
+        Toast.makeText(getApplicationContext(),"发布成功！",Toast.LENGTH_SHORT).show();
     }
 
     @Override

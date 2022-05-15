@@ -20,12 +20,12 @@ public class DaoRequest {
         helper = MyHelper.getInstance(context.getApplicationContext());
     }
 
-    public Cursor getRequests(String pid)
+    public Cursor getRequests(String rid)
     {
         CreatetableReq();
         db = helper.getReadableDatabase();
-        String args[] ={pid};
-        Cursor cursor = db.rawQuery("select * from project_info where pid=?",args);
+        String args[] ={rid};
+        Cursor cursor = db.rawQuery("select * from request_info where rid=?",args);
         return cursor;
     }
 
@@ -44,12 +44,12 @@ public class DaoRequest {
         daoTimetable.updateTime(pid,time);
     }
 
-    public void insertRequest(request req)
+    public void insertRequest(request req,String id)
     {
         CreatetableReq();
         String rid = null;
         do {
-            rid = String.valueOf((int)Math.random()*1000000);
+            rid = String.valueOf((int)(Math.random()*1000000));
         }while (RidisExist(rid));
 
         //插入请求
@@ -61,7 +61,8 @@ public class DaoRequest {
         cv.put("rstate","work");
         cv.put("rintroduce",req.getRintroduce());
         cv.put("rcontent",req.getRcontent());
-        db.insert("request","rid",cv);
+        cv.put("id",id);
+        db.insert("request_info","rid",cv);
     }
 
     public boolean RidisExist(String rid)

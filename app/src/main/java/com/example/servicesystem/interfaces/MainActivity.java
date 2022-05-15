@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.servicesystem.R;
 import com.example.servicesystem.infrastructure.Dao.Dao;
 
+import manager.interfaces.ManagerActivity;
 import user.infrastructure.db.Dao.DaoUser;
 import user.interfaces.FreeWorkerActivity;
 import user.interfaces.UserActivity;
@@ -61,13 +62,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         case 0:
                             intent = new Intent(MainActivity.this, FreeWorkerActivity.class);
                             intent.putExtra("state","自由职业者");
+                            intent.putExtra("id",id);
                             break;
                         case 1:
                             intent = new Intent(MainActivity.this, UserActivity.class);
                             intent.putExtra("state","客户");
+                            intent.putExtra("id",id);
                             break;
+                        case -1:
+                            intent = new Intent(MainActivity.this, ManagerActivity.class);
+                           break;
                     }
-                    intent.putExtra("id",id);
                     startActivity(intent);
                 }
                 break;
@@ -86,9 +91,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         case 0:
                             state = "自由职业者";
                             break;
+                        case -1:
+                            Toast.makeText(MainActivity.this,"管理员不可注册",Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                    daoUser.insertUserInfo(id,pw,state);
-                    Toast.makeText(getApplicationContext(),"注册成功！",Toast.LENGTH_SHORT).show();
+                    if(type!=-1)
+                    {
+                        daoUser.insertUserInfo(id,pw,state);
+                        Toast.makeText(getApplicationContext(),"注册成功！",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
@@ -100,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String item = (String) spn.getItemAtPosition(i);
         if(item.equals("客户"))   type = 1;
         else if(item.equals("自由职业者")) type = 0;
+        else if(item.equals("管理员")) type = -1;
     }
 
     @Override

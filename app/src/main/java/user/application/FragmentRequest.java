@@ -42,7 +42,6 @@ public class FragmentRequest extends Fragment implements View.OnClickListener {
         MyAdapter myAdapter = new MyAdapter();
         myAdapter.setReqMsg(list);
         myAdapter.setMsg(id,state);
-        myAdapter.setContext(getContext());
         recyclerView.setAdapter(myAdapter);
         button.setOnClickListener(this);
         return v;

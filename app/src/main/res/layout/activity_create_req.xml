@@ -4,6 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context="request.interfaces.CreateReqActivity">
-    <include layout="activity_create_pro"/>
+
+    <LinearLayout
+        style="@style/pro_detail_horizontal">
+        <TextView
+            android:id="@+id/pro_new_tvname"
+            android:text="请求:"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="50dp">
+        </TextView>
+        <EditText
+            android:hint="篮球教学"
+            android:id="@+id/pro_new_edtname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/pro_detail_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:gravity="center"
+            android:text="分类"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"/>
+        <Spinner
+            android:id="@+id/pro_new_spinner"
+            android:entries="@array/array_spinner"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <EditText
+            android:hint="请求简介"
+            android:id="@+id/pro_new_edtintroduce"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+    <View style="@style/horizontal_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <EditText
+            android:hint="具体内容"
+            android:id="@+id/pro_new_edtcontent"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+
+    <View style="@style/horizontal_line" />
+
+    <Button
+        android:text="发布"
+        android:id="@+id/pro_new_btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </Button>
 </LinearLayout>

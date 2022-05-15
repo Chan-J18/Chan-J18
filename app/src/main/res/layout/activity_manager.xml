@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="manager.interfaces.ManagerActivity">
+    <TextView
+        android:text="待审核项目"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View style="@style/horizontal_line"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/manager_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

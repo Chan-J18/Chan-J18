@@ -19,7 +19,9 @@ import com.example.servicesystem.R;
 import java.io.Serializable;
 import java.util.List;
 
+import contract.interfaces.ContractActivity;
 import project.interfaces.CreateProActivity;
+import project.interfaces.ProjectActivity;
 import user.domain.model.entity.ListBean;
 import user.domain.model.Service.ProjectService;
 
@@ -41,13 +43,29 @@ public class FragmentProject extends Fragment implements View.OnClickListener {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         button.setOnClickListener(this);
+        setRecyclerView();
+        return v;
+    }
+
+    private void setRecyclerView() {
         List<ListBean> list = new ProjectService(getContext()).get(id);
         MyAdapter myAdapter = new MyAdapter();
         myAdapter.setProMsg(list);
         myAdapter.setMsg(id,state);
-        myAdapter.setContext(getContext());
+        myAdapter.setItemClickListener(new MyAdapter.setOnClickListener() {
+            @Override
+            public void OnClick(Bundle bundle) {
+                Intent intent =null;
+                Bundle newbdl = new Bundle();
+                newbdl.putSerializable("id",bundle.getSerializable("Umsg"));
+                newbdl.putSerializable("state",bundle.getSerializable("state"));
+                newbdl.putSerializable("Pmsg",bundle.getSerializable("Pmsg"));
+                intent = new Intent(getContext(), ProjectActivity.class);
+                intent.putExtras(newbdl);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(myAdapter);
-        return v;
     }
 
     //发布项目

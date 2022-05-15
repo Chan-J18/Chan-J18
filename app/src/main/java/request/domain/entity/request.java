@@ -1,12 +1,15 @@
 package request.domain.entity;
 
-public class request {
+import java.io.Serializable;
+
+public class request implements Serializable {
     private String rid;
     private String rname;
     private String rtype;
     private String rstate;
     private String rintroduce;
     private String rcontent;
+
 
     public void setRcontent(String rcontent) {
         this.rcontent = rcontent;

@@ -56,23 +56,21 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private void switchFragment(int choose) {
         fragmentManager =getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("id",id);
+        bundle.putString("state",state);
         switch (choose)
         {
             case 1:
                 fragmentList = new FragmentList();
                 fragment = fragmentList;
-                fragmentList.setType("客户");
                 break;
             case 2:
                 fragmentRequest = new FragmentRequest();
                 fragment = fragmentRequest;
-                Bundle bundle = new Bundle();
-                bundle.putString("id",id);
-                bundle.putString("state",state);
-                fragment.setArguments(bundle);
                 break;
         }
-
+        fragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.user_fragment,fragment);
         fragmentTransaction.commit();
 
